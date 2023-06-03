@@ -15,7 +15,7 @@ function Home() {
       if (!user) {
         navigate("/login");
       } else {
-        if (user.uid !== "IM48QsyBZ1ZCI3GfniaSD0M5gTq1") {
+        if (user.email !== "haikalfajari156@gmail.com") {
           setShowDataList(false);
         } else {
           setShowDataList(true);

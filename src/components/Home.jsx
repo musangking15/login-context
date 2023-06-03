@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const notLogin = auth.onAuthStateChanged((user) => {
       if (!user) {

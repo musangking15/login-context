@@ -11,7 +11,6 @@ const RegisterForm = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // Lakukan pengecekan dan tindakan sesuai kebutuhan
     console.log("Email:", email);
     console.log("Password:", password);
 

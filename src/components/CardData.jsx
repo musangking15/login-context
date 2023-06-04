@@ -1,18 +1,17 @@
-import React, { useEffect, useContext, useState } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { addContext, GET_DATA } from "../Context/AddContext";
+import { addContext } from "../Context/AddContext";
 
-function CityCard({ city }) {
+function CardKota({ kota }) {
   const { data } = useContext(addContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [cityData, setCityData] = useState([]);
+  const [dataKota, setDataKota] = useState([]);
 
   const handleCardClick = () => {
-    const filteredData = data.filter((item) => item.kota === city);
-    setCityData(filteredData);
+    const filterData = data.filter((item) => item.kota === kota);
+    setDataKota(filterData);
     setModalOpen(true);
   };
 
@@ -20,15 +19,15 @@ function CityCard({ city }) {
     <>
       <Card className="mb-3" onClick={handleCardClick}>
         <Card.Body>
-          <Card.Title>{city}</Card.Title>
+          <Card.Title>{kota}</Card.Title>
         </Card.Body>
       </Card>
       <Modal show={modalOpen} onHide={() => setModalOpen(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Data {city}</Modal.Title>
+          <Modal.Title>Data Keluhan Kota {kota}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {cityData.map((item) => (
+          {dataKota.map((item) => (
             <div key={item.id}>
               <h4>
                 {item.nama} -- {item.alamat} -- {item.keluhan}
@@ -47,28 +46,13 @@ function CityCard({ city }) {
 }
 
 function CardData() {
-  const { data, dispatch } = useContext(addContext);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://64400c883dee5b763e2d6c25.mockapi.io/todo");
-        dispatch({ type: GET_DATA, payload: response.data });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [dispatch]);
-
-  const uniqueCities = [...new Set(data.map((item) => item.kota))];
+  const { data } = useContext(addContext);
+  const filterKota = [...new Set(data.map((item) => item.kota))];
 
   return (
     <>
-      <h3>Data Keluhan</h3>
-      {uniqueCities.map((city) => (
-        <CityCard key={city} city={city} />
+      {filterKota.map((kota) => (
+        <CardKota key={kota} kota={kota} />
       ))}
     </>
   );

@@ -1,14 +1,13 @@
 import { Button } from "react-bootstrap";
 import { auth } from "../config/firebase";
-// import DataList from "./DataList";
 import FormData from "./FormData";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CardData from "./CardData";
+import DataList from "./DataList";
 
 function Home() {
   const navigate = useNavigate();
-  const [showCardData, setShowCardData] = useState(false);
+  const [showDataList, setShowDataList] = useState(false);
   const [showFormData, setShowFormData] = useState(false);
 
   useEffect(() => {
@@ -18,10 +17,10 @@ function Home() {
         navigate("/login");
       } else {
         if (user.email !== "haikalfajari156@gmail.com") {
-          setShowCardData(false);
+          setShowDataList(false);
           setShowFormData(true);
         } else {
-          setShowCardData(true);
+          setShowDataList(true);
           setShowFormData(false);
         }
       }
@@ -42,7 +41,7 @@ function Home() {
       <h1>Form Keluhan</h1>
       {showFormData && <FormData />}
       <hr />
-      {showCardData && <CardData />}
+      {showDataList && <DataList />}
     </>
   );
 }

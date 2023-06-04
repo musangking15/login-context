@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { addContext } from "../Context/AddContext";
+import { ListGroup } from "react-bootstrap";
 
 function CardKota({ kota }) {
   const { data } = useContext(addContext);
@@ -17,10 +18,10 @@ function CardKota({ kota }) {
 
   return (
     <>
-      <Card className="mb-3" onClick={handleCardClick}>
-        <Card.Body>
-          <Card.Title>{kota}</Card.Title>
-        </Card.Body>
+      <Card style={{ width: "18rem" }} className="mb-3" onClick={handleCardClick}>
+        <ListGroup>
+          <ListGroup.Item style={{ cursor: "pointer" }}>{kota}</ListGroup.Item>
+        </ListGroup>
       </Card>
       <Modal show={modalOpen} onHide={() => setModalOpen(false)}>
         <Modal.Header closeButton>

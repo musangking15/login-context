@@ -29,6 +29,7 @@ function FormData() {
       setAlamat("");
       setKota("");
       setKeluhan("");
+      alert("Data keluhan anda sudah terkirim");
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +42,7 @@ function FormData() {
         <input type="text" name="nama" id="nama" placeholder="masukkan nama" value={nama} onChange={(e) => setNama(e.target.value)} />
         <input type="text" name="alamat" id="alamat" placeholder="masukkan alamat" value={alamat} onChange={(e) => setAlamat(e.target.value)} />
         <select name="kota" id="kota" value={kota} onChange={(e) => setKota(e.target.value)}>
-          <option disabled>Pilih</option>
+          <option selected>Pilih</option>
           <option value="jakarta">Jakarta</option>
           <option value="bandung">Bandung</option>
           <option value="semarang">Semarang</option>
